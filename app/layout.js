@@ -1,5 +1,9 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { Sidebar } from "@components/common/Sidebar";
+import AuthProviders from "@components/Provider";
+import { StateProvider } from "@redux/StateProvider";
+import { Navbar } from "@components/common/Navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -9,9 +13,22 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <AuthProviders>
+        <StateProvider>
+          <body className={`${inter.className} flex flex-col bg-bgGray`}>
+            <Navbar />
+            <div className={` flex mt-[70px]`}>
+              <Sidebar />
+              <div className="flex-1 ml-[400px]">
+                {children}
+              </div>
+            </div>
+          </body>
+        </StateProvider>
+      </AuthProviders>
     </html>
   );
 }
