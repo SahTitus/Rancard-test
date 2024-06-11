@@ -6,6 +6,7 @@ import Avatar from '@mui/material/Avatar';
 import { KeyboardArrowDown, NotificationsNone } from '@mui/icons-material';
 import { IoCartOutline } from 'react-icons/io5'
 import { useStateContex } from '@redux/StateProvider';
+import Link from 'next/link';
 
 export const Navbar = () => {
     const { toggleFormModal } = useStateContex()
@@ -34,12 +35,14 @@ export const Navbar = () => {
             </div>
 
             <div className="flex items-center">
-                <div onClick={()=>toggleFormModal('checkout')} className='flex bg-green rounded-full px-3 py-1 text-white mr-2 cursor-pointer'>
+                <div onClick={() => toggleFormModal('checkout')} className='flex bg-green rounded-full px-3 py-1 text-white mr-2 cursor-pointer'>
                     <IoCartOutline className=" text-2xl mr-2 cursor-pointer" />
                     <span>0</span>
                 </div>
                 <NotificationsNone className="text-black mr-4 cursor-pointer" />
-                <Avatar alt="Avatar" src="/avatar.jpg" className="cursor-pointer" />
+                <Link href={'/auth'}>
+                    <Avatar alt="Avatar" src="/avatar.jpg" className="cursor-pointer" />
+                </Link>
                 <KeyboardArrowDown className="text-black ml-4 cursor-pointer" />
             </div>
         </div>
